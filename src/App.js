@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom"
 import { Register, Login, Main, Navbar } from "./components"
 
 function App() {
-    const state = useSelector(state=> state.countReducer.count)
   return (
     <div>
         <Navbar />
