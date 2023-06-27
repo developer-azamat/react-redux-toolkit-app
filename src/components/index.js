@@ -1,1 +1,1 @@
-export {default as  Main} from "./Main"export {default as  Register} from "./Register"export {default as  Login} from "./Login"// import Main from "./components/Main";// import Register from "./components/Register";// import Login from "./components/Login";
+export {default as  Main} from "./Main"export {default as  Register} from "./Register"export {default as  Login} from "./Login"export {default as Navbar} from "./Navbar"// import Main from "./components/Main";// import Register from "./components/Register";// import Login from "./components/Login";
