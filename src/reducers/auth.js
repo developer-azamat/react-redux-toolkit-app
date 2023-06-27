@@ -1,1 +1,31 @@
-import {createSlice} from "@reduxjs/toolkit";const initialState = {    isLoading: false,    loggedIn: false,    error: null,    user: null}export const authSlice = createSlice({    name: "auth",    initialState,    reducers : {        // LOGIN        loginUserStart : state => {state.isLoading = true},        loginUserSuccess: state => {},        loginUserFailure: state => {},        //  REGISTER        registerUserStart : state => {state.isLoading = true},        registerUserSuccess: state => {            // eslint-disable-next-line no-unused-expressions,no-sequences            state.loggedIn = true, state.isLoading = false        },        // eslint-disable-next-line no-unused-expressions        registerUserFailure: state => {            // eslint-disable-next-line no-unused-expressions,no-sequences            state.isLoading = false, state.error = "error"        }    }})export const {loginUserStart, registerUserFailure, registerUserSuccess, registerUserStart, loginUserFailure, loginUserSuccess} = authSlice.actionsexport  default authSlice.reducer
+import { createSlice } from "@reduxjs/toolkit";
+
+const initialState = {
+    isLoading: false,
+    loggedIn: false,
+    error: null,
+    user: null
+};
+
+export const authSlice = createSlice({
+    name: "auth",
+    initialState,
+    reducers: {
+        signUserStart: (state) => {
+            state.isLoading = true;
+        },
+        signUserSuccess: (state, action) => {
+            state.isLoading = false;
+            state.loggedIn = true; 
+            state.user = action.payload
+        },
+        signUserFailure: (state, action) => {
+            state.isLoading = false;
+            state.error = action.payload;
+        }
+    }
+});
+
+export const { signUserFailure, signUserStart, signUserSuccess } = authSlice.actions;
+
+export default authSlice.reducer;
