@@ -29,11 +29,11 @@ const Login = () => {
     }
   };
 
-  useEffect(()=> {
-    if(loggedIn){
-        navigate('/')
+  useEffect(() => {
+    if (loggedIn) {
+      navigate("/");
     }
-}, [])
+  }, [loggedIn]);
   return (
     <div className="d-flex align-items-center py-4 px-5 text-center ">
       <div className="form-signin m-auto">
