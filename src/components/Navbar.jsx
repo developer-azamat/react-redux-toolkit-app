@@ -1,9 +1,20 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { removeItem } from "../helper/persistance-log";
+import { logoutUser } from "../reducers/auth";
 const Navbar = () => {
   const { user, loggedIn } = useSelector((state) => state.auth);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const logoutHandler = () => {
+      dispatch(logoutUser());
+    removeItem("token");
+    navigate("/login");
+  };
   return (
     <header className="d-flex container justify-content-between align-items-center px-5 py-2  mb-5 border-bottom">
       <h1 className="h4">
@@ -28,10 +39,16 @@ const Navbar = () => {
       <div className={"d-flex gap-2 align-items-center nav-links"}>
         {loggedIn ? (
           <div className={"d-flex gap-2 align-content-center"}>
-          <p className={"text-black text-decoration-none fs-5 m-0 text-capitalize"}>
-            {user.username}
-          </p>
-          <button className="btn btn-outline-danger">Logout</button>
+            <p
+              className={
+                "text-black text-decoration-none fs-5 m-0 text-capitalize"
+              }
+            >
+              {user.username}
+            </p>
+            <button className="btn btn-outline-danger" onClick={logoutHandler}>
+              Logout
+            </button>
           </div>
         ) : (
           <>
